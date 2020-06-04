@@ -11,14 +11,15 @@
     <tr v-for="(item, index) in items" :key="index">
       <td>{{ item.title }}</td>
       <td>{{ item.price }}</td>
-      <td>Rem</td>
+      <button @click="removeItem(index)" type="button" class="btn btn-danger"> <span class="glyphicon glyphicon-trash"></span> Trash </button>
     </tr>
-   <tr>
+   
+  </tbody>
+  <tr>
       <th scope="col">Total</th>
-      <th scope="col">{{ totalPrice }}</th>
+      <th scope="col">{{ total }}</th>
       <th scope="col"></th>
     </tr>
-  </tbody>
 </table>
 </template>
 <script>
@@ -26,13 +27,18 @@
 export default {
    props:['items'],
    computed:{
-	   totalPrice(){
-		   var total=0
-		   this.items.forEach(item=>{
-			   total += parseFloat(item.price)
-		   })
-		   return total
-	   }
+	   total(){
+		   var total =0
+		   this.items.forEach(item => {
+			   total+= parseFloat(item.price)
+			   })
+			   return total
+		   }
+   },
+   methods:{
+     removeItem(index){
+       this.$emit('itemRemoved',index)
+     }
    }
 }
 </script>
