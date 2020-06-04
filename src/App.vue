@@ -1,14 +1,14 @@
 <template>
   <div id="app">
 <navbar></navbar>
-<div class="container">
+<div class="containers">
 <div class="row">
-  <div class="col-sm-10">
+  <div class="col-sm-9">
      
-   <product :items="items"></product>  
+   <product @newItemAdded="addCartItem" :items="items"></product>  
    </div>
-   <div class="col-sm-2">
-   <cart></cart>
+   <div class="col-sm-3">
+   <cart :items="cart"></cart>
     </div>
   </div>
   </div>
@@ -30,17 +30,27 @@ export default {
   },
   data(){
  return{
-   items: []
+   items: [],
+   cart:[{
+     id:1,
+     title:'test',
+     price:20
+   }]
  }
   },
   mounted(){
    this.items=data
+  },
+  methods:{
+    addCartItem(item){
+      this.cart.push(item)
+    }
   }
 }
 </script>
 
 <style>
-.container{
-padding:10px;
+.containers{
+padding:20px;
 }
 </style>
