@@ -4,10 +4,8 @@
 <div class="container">
 <div class="row">
   <div class="col-sm-10">
-      <div class="row">
-   <product></product> 
-
-</div> 
+     
+   <product :items="items"></product>  
    </div>
    <div class="col-sm-2">
    <cart></cart>
@@ -21,6 +19,7 @@
 import Navbar from './components/Navbar.vue'
 import Product from './components/Product.vue'
 import Cart from './components/Cart.vue'
+import data from './data.js'
 
 
 export default {
@@ -28,6 +27,14 @@ export default {
     Navbar,
     Cart,
     Product
+  },
+  data(){
+ return{
+   items: []
+ }
+  },
+  mounted(){
+   this.items=data
   }
 }
 </script>
